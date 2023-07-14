@@ -18,24 +18,26 @@ class _HomePageState extends State<HomePage> {
     _deviceWidth = MediaQuery.of(context).size.width;
     _deviceHeigth = MediaQuery.of(context).size.height;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Taskly!",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-            ),
+      appBar: AppBar(
+        title: const Text(
+          "Taskly!",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
           ),
-          toolbarHeight: _deviceHeigth * 0.15,
         ),
-        body: _tasksList());
+        toolbarHeight: _deviceHeigth * 0.15,
+      ),
+      body: _tasksList(),
+      floatingActionButton: _addTaskButton(),
+    );
   }
 
   Widget _tasksList() {
     return ListView(
       children: <Widget>[
         ListTile(
-          subtitle: Text(DateTime.now().toString()),
+          subtitle: Text(DateTime.now().toString().split('.')[0]),
           title: Text(
             'Do laundry',
             style: TextStyle(
@@ -45,7 +47,7 @@ class _HomePageState extends State<HomePage> {
           trailing: Icon(Icons.check_box_outlined, color: Colors.red),
         ),
         ListTile(
-          subtitle: Text(DateTime.now().toString()),
+          subtitle: Text(DateTime.now().toString().split('.')[0]),
           title: Text(
             'Do laundry',
             style: TextStyle(
@@ -55,6 +57,15 @@ class _HomePageState extends State<HomePage> {
           trailing: Icon(Icons.check_box_outlined, color: Colors.red),
         ),
       ],
+    );
+  }
+
+  Widget _addTaskButton() {
+    return FloatingActionButton(
+      onPressed: () {
+        print('Pressed _addTaskButton');
+      },
+      child: const Icon(Icons.add),
     );
   }
 }
